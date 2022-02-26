@@ -1,11 +1,8 @@
 import * as React from "react";
 //
-import TopNav from "../components/Layout/TopNav";
 import Footer from "../components/Layout/Footer";
 import Hero from "../components/Layout/Hero";
 import StudentDetails from "../components/Table/StudentDetails";
-//
-// import PricingContent from "../page-components/PricingContent";
 
 const heroContent = {
   title: "The Annual Conference",
@@ -18,7 +15,6 @@ const heroContent = {
 const Home = () => {
   return (
     <React.Fragment>
-      <TopNav />
       <Hero hero={heroContent} />
       <StudentDetails />
       <Footer />
