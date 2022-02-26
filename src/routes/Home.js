@@ -1,4 +1,5 @@
 import Button from "@mui/material/Button";
+import { Counter } from "../app/features/counter/Counter";
 //
 import Footer from "../components/Layout/Footer";
 import Hero from "../components/Layout/Hero";
@@ -17,6 +18,7 @@ const Home = () => {
   return (
     <>
       <Hero hero={heroContent} />
+      <Counter />
       <StudentDetails />
       <MuiLink href="/add-student">
         <Button variant="contained" sx={{ float: "right", right: 25, top: 25 }}>
