@@ -5,6 +5,7 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   typography: { fontFamily: "Arial" },
   palette: {
+    // mode: toggleDark ? "dark" : "light",
     primary: {
       main: "#556cd6",
     },

@@ -1,25 +1,12 @@
 import * as React from "react";
-//
+// components - MUI
 import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import Avatar from "@mui/material/Avatar";
-import Link from "@mui/material/Link";
-// import Typography from "@mui/material/Typography";
+// components - internal
+import MuiLink from "../Nav/MuiLink";
+// assets
 import logo from "../../assets/images/react-icon.png";
-
-const NavItem = ({ href, text }) => {
-  return (
-    <Link
-      variant="button"
-      color="text.primary"
-      href={href}
-      sx={{ my: 1, mx: 1.5 }}
-    >
-      {text}
-    </Link>
-  );
-};
 
 const topNavLinks = [
   { href: "/", text: "Home" },
@@ -43,12 +30,9 @@ const TopNav = () => {
         />
         <nav>
           {topNavLinks.map((item) => (
-            <NavItem href={item.href} text={item.text} />
+            <MuiLink href={item.href} text={item.text} />
           ))}
         </nav>
-        {/* <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-          Login
-        </Button> */}
       </Toolbar>
     </AppBar>
   );

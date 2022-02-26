@@ -1,4 +1,5 @@
 import * as React from "react";
+//
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,9 +8,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+//
+import MuiLink from "../Nav/MuiLink";
+import DeleteStudent from "../Modal/DeleteStudent";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(name, dob, city, state, zip) {
+  return { name, dob, city, state, zip };
 }
 
 const rows = [
@@ -40,12 +44,15 @@ export default function BasicTable() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.dob}</TableCell>
+              <TableCell align="right">{row.city}</TableCell>
+              <TableCell align="right">{row.state}</TableCell>
+              <TableCell align="right">{row.zip}</TableCell>
               <TableCell align="right">
-                <Button>Edit</Button>|<Button>Delete</Button>
+                <MuiLink href="edit-student">
+                  <Button variant="text">Edit</Button>
+                </MuiLink>
+                |<DeleteStudent />
               </TableCell>
             </TableRow>
           ))}

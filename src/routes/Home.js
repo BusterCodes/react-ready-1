@@ -1,7 +1,8 @@
-import * as React from "react";
+import Button from "@mui/material/Button";
 //
 import Footer from "../components/Layout/Footer";
 import Hero from "../components/Layout/Hero";
+import MuiLink from "../components/Nav/MuiLink";
 import StudentDetails from "../components/Table/StudentDetails";
 
 const heroContent = {
@@ -14,11 +15,16 @@ const heroContent = {
 
 const Home = () => {
   return (
-    <React.Fragment>
+    <>
       <Hero hero={heroContent} />
       <StudentDetails />
+      <MuiLink href="/add-student">
+        <Button variant="contained" sx={{ float: "right", right: 25, top: 25 }}>
+          Add New Student
+        </Button>
+      </MuiLink>
       <Footer />
-    </React.Fragment>
+    </>
   );
 };
 
