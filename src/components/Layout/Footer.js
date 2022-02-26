@@ -50,13 +50,13 @@ const footers = [
   },
 ];
 
-const Footer = ({ showNav, copyright }) => {
+const Footer = ({ showNav, noCopyright }) => {
   return (
     <Container
       maxWidth="md"
       component="footer"
       sx={{
-        borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+        // borderTop: (theme) => `1px solid ${theme.palette.divider}`,
         mt: 8,
         py: [3, 6],
       }}
@@ -82,7 +82,7 @@ const Footer = ({ showNav, copyright }) => {
         </Grid>
       )}
 
-      <Copyright sx={{ mt: 5 }} />
+      {!noCopyright && <Copyright sx={{ mt: 5 }} />}
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { selectCount } from "../../app/features/counter/counterSlice.js";
+import { selectDarkMode } from "../../app/features/darkMode/darkModeSlice.js";
 // components - MUI
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,6 +11,7 @@ import Link from "@mui/material/Link";
 // import MuiLink from "../Nav/MuiLink";
 // assets
 import logo from "../../assets/images/react-icon.png";
+import { ToggleDarkMode } from "../../app/features/darkMode/ToggleDarkMode.js";
 
 const NavLink = ({ href, children }) => {
   return (
@@ -32,6 +34,7 @@ const topNavLinks = [
 
 const TopNav = () => {
   const count = useSelector(selectCount);
+  const darkMode = useSelector(selectDarkMode);
   return (
     <AppBar
       position="static"
@@ -47,6 +50,8 @@ const TopNav = () => {
         />
         <nav>
           <h3>{count}</h3>
+          <ToggleDarkMode />
+          <h3>{darkMode ? "Dark" : "Light"}</h3>
           {topNavLinks.map((item) => (
             <NavLink href={item.href} children={item.text} />
           ))}

@@ -1,10 +1,12 @@
 import Button from "@mui/material/Button";
-import { Counter } from "../app/features/counter/Counter";
+// import { Counter } from "../app/features/counter/Counter";
 //
-import Footer from "../components/Layout/Footer";
-import Hero from "../components/Layout/Hero";
+import Hero from "../components/Hero/Hero";
 import MuiLink from "../components/Nav/MuiLink";
 import StudentDetails from "../components/Table/StudentDetails";
+//
+import { useSelector } from "react-redux";
+import { selectDarkMode } from "../app/features/darkMode/darkModeSlice.js";
 
 const heroContent = {
   title: "The Annual Conference",
@@ -18,14 +20,14 @@ const Home = () => {
   return (
     <>
       <Hero hero={heroContent} />
-      <Counter />
+      {/* <Counter /> */}
+      {JSON.stringify(useSelector(selectDarkMode))}
       <StudentDetails />
       <MuiLink href="/add-student">
         <Button variant="contained" sx={{ float: "right", right: 25, top: 25 }}>
           Add New Student
         </Button>
       </MuiLink>
-      <Footer />
     </>
   );
 };
