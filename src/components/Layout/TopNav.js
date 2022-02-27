@@ -4,8 +4,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Avatar from "@mui/material/Avatar";
 import Link from "@mui/material/Link";
-// assets
-import logo from "../../assets/images/react-icon.png";
 
 const NavLink = ({ href, children }) => {
   return (
@@ -35,11 +33,13 @@ const TopNav = () => {
       sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
     >
       <Toolbar sx={{ flexWrap: "wrap" }}>
-        <Avatar
-          alt="logo"
-          src={logo}
-          sx={{ width: 75, height: 75, m: "5px auto 5px 0" }}
-        />
+        <Link href="/" sx={{ mr: "auto" }}>
+          <Avatar
+            alt="logo"
+            src="./react-icon.png"
+            sx={{ width: 75, height: 75, m: "5px auto 5px 0" }}
+          />
+        </Link>
         <nav>
           {topNavLinks.map((item) => (
             <NavLink href={item.href} children={item.text} />

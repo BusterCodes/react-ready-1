@@ -1,7 +1,18 @@
 import React from "react";
+//
+import Typography from "@mui/material/Typography";
+//
+import AddStudentForm from "../components/Form/AddStudentForm";
 
 const EditStudentPage = () => {
-  return <div>EditStudent</div>;
+  return (
+    <>
+      <Typography variant="h4" align="center" sx={{ m: 5 }}>
+        Edit Student
+      </Typography>
+      <AddStudentForm />
+    </>
+  );
 };
 
 export default EditStudentPage;

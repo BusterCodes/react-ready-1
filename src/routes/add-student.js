@@ -8,7 +8,7 @@ const AddStudentPage = () => {
   return (
     <>
       <Typography variant="h4" align="center" sx={{ m: 5 }}>
-        AddStudent
+        Add Student
       </Typography>
       <AddStudentForm />
     </>

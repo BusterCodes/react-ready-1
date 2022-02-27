@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Student 1",
+    "dateOfBirth": "01/01/1999",
+    "city": "Riverwoods",
+    "state": "Illinois",
+    "zip": "60001"
+  },
+  {
+    "name": "Student 2",
+    "dateOfBirth": "01/11/1989",
+    "city": "Riverwoods",
+    "state": "Illinois",
+    "zip": "60001"
+  },
+  {
+    "name": "Student 3",
+    "dateOfBirth": "03/11/1979",
+    "city": "Denver",
+    "state": "Colorado",
+    "zip": "80101"
+  }
+]

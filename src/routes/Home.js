@@ -18,7 +18,10 @@ const HomePage = () => {
       <Hero hero={heroContent} />
       <StudentDetails />
       <MuiLink href="/add-student">
-        <Button variant="contained" sx={{ float: "right", right: 25, top: 25 }}>
+        <Button
+          variant="contained"
+          sx={{ float: "right", right: 25, top: 25, mb: 5 }}
+        >
           Add New Student
         </Button>
       </MuiLink>

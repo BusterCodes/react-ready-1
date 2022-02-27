@@ -1,4 +1,5 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 //
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,16 +13,15 @@ import Button from "@mui/material/Button";
 import MuiLink from "../Link/MuiLink";
 import DeleteStudent from "../Modal/DeleteStudent";
 
-function createData(name, dob, city, state, zip) {
-  return { name, dob, city, state, zip };
-}
+const StudentDetails = () => {
+  const [students, setStudents] = useState([]);
+  useEffect(() => {
+    axios
+      .get("./students.json")
+      .then((res) => setStudents(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
-const rows = [
-  createData("Student 1", "01/01/1999", "Riverwoods", "Illinois", "60001"),
-  createData("Student 2", "01/11/1989", "Riverwoods", "Illinois", "60001"),
-];
-
-export default function BasicTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -36,18 +36,18 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {students.map((student) => (
             <TableRow
-              key={row.name}
+              key={student.name}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {student.name}
               </TableCell>
-              <TableCell align="right">{row.dob}</TableCell>
-              <TableCell align="right">{row.city}</TableCell>
-              <TableCell align="right">{row.state}</TableCell>
-              <TableCell align="right">{row.zip}</TableCell>
+              <TableCell align="right">{student.dateOfBirth}</TableCell>
+              <TableCell align="right">{student.city}</TableCell>
+              <TableCell align="right">{student.state}</TableCell>
+              <TableCell align="right">{student.zip}</TableCell>
               <TableCell align="right">
                 <MuiLink href="edit-student">
                   <Button variant="text">Edit</Button>
@@ -60,4 +60,5 @@ export default function BasicTable() {
       </Table>
     </TableContainer>
   );
-}
+};
+export default StudentDetails;
