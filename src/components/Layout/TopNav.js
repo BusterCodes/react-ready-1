@@ -42,7 +42,7 @@ const TopNav = () => {
         </Link>
         <nav>
           {topNavLinks.map((item) => (
-            <NavLink href={item.href} children={item.text} />
+            <NavLink key={item.href} href={item.href} children={item.text} />
           ))}
         </nav>
       </Toolbar>

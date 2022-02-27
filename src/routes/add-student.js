@@ -1,8 +1,8 @@
 import React from "react";
-//
+// components - MUI
 import Typography from "@mui/material/Typography";
-//
-import AddStudentForm from "../components/Form/AddStudentForm";
+// HOCs
+import AddStudent from "../app/features/roster/AddStudent";
 
 const AddStudentPage = () => {
   return (
@@ -10,7 +10,7 @@ const AddStudentPage = () => {
       <Typography variant="h4" align="center" sx={{ m: 5 }}>
         Add Student
       </Typography>
-      <AddStudentForm />
+      <AddStudent />
     </>
   );
 };

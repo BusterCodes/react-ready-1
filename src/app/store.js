@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from "redux";
 import counterReducer from "./features/counter/counterSlice";
 import darkModeReducer from "./features/darkMode/darkModeSlice";
+import rosterReducer from "./features/roster/rosterSlice";
 
 const saveToLocalStorage = (state) => {
   try {
@@ -23,6 +24,7 @@ const loadFromLocalStorage = () => {
 const rootReducer = combineReducers({
   counter: counterReducer,
   darkMode: darkModeReducer,
+  roster: rosterReducer,
 });
 
 const persistedStore = loadFromLocalStorage();
