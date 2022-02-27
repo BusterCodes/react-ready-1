@@ -10,6 +10,7 @@ import {
   initialValues,
   statesArray,
 } from "../../../utils/formHelpers";
+import { nanoid } from "nanoid";
 //
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -34,7 +35,7 @@ const AddStudentForm = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      dispatch(addStudent(values));
+      dispatch(addStudent({ ...values, id: nanoid() }));
       navigate("/");
     },
   });
