@@ -6,16 +6,26 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+//
+import { useDispatch } from "react-redux";
+import {
+  darkModeOn,
+  darkModeOff,
+} from "../../app/features/darkMode/darkModeSlice.js";
 
 const DeleteStudentModal = () => {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
+    dispatch(darkModeOn());
   };
 
   const handleClose = () => {
     setOpen(false);
+    dispatch(darkModeOff());
+    alert("Student deleted!");
   };
 
   return (
@@ -28,10 +38,10 @@ const DeleteStudentModal = () => {
         aria-describedby="alert-dialog-description"
         sx={{ textAlign: "center" }}
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle id="alert-dialog-title" sx={{}}>
           {"Confirm - Delete Student"}
         </DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{}}>
           <DialogContentText id="alert-dialog-description">
             Are you sure you want to delete the student?
           </DialogContentText>

@@ -12,13 +12,17 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/icons-material": "^5.4.2",
+    "@mui/lab": "^5.0.0-alpha.70",
     "@mui/material": "latest",
     "@reduxjs/toolkit": "^1.7.2",
+    "date-fns": "^2.28.0",
+    "formik": "^2.2.9",
     "react": "latest",
     "react-dom": "latest",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "latest"
+    "react-scripts": "latest",
+    "yup": "^0.32.11"
   },
   "browserslist": {
     "production": [

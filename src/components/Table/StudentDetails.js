@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 //
-import MuiLink from "../Nav/MuiLink";
+import MuiLink from "../Link/MuiLink";
 import DeleteStudent from "../Modal/DeleteStudent";
 
 function createData(name, dob, city, state, zip) {
