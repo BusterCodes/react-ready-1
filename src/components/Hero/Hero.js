@@ -72,7 +72,7 @@ Hero.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     imageText: PropTypes.string.isRequired,
-    linkText: PropTypes.string.isRequired,
+    linkText: PropTypes.string,
     title: PropTypes.string.isRequired,
   }).isRequired,
 };

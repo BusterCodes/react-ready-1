@@ -1,5 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { HomePage, AboutPage, AddStudentPage, EditStudentPage } from "./routes";
+import {
+  HomePage,
+  AboutPage,
+  AddStudentPage,
+  EditStudentPage,
+  TestPage,
+  NoMatch,
+} from "./routes";
 //
 import Layout from "./components/Layout";
 import { lightTheme, darkTheme } from "./theme";
@@ -21,6 +28,8 @@ const App = () => {
             <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/add-student" element={<AddStudentPage />} />
             <Route exact path="/edit-student" element={<EditStudentPage />} />
+            <Route exact path="/test" element={<TestPage />} />
+            <Route path="*" element={<NoMatch />} />
           </Routes>
         </Router>
       </Layout>

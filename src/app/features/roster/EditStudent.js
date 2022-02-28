@@ -1,63 +1,44 @@
 import { useState } from "react";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 //
-import Container from "@mui/material/Container";
+import { useDispatch } from "react-redux";
+import { addStudent } from "./rosterSlice";
+//
+import { useFormik } from "formik";
+import {
+  validationSchema,
+  initialValues,
+  statesArray,
+} from "../../../utils/formHelpers";
+import { nanoid } from "nanoid";
+//
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import Container from "@mui/material/Container";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
 //
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-//
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 
-const validationSchema = yup.object({
-  name: yup
-    .string("Enter your name")
-    .max(32, "Too many characters")
-    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
-    .required("Name is required"),
-  city: yup
-    .string("Enter your city")
-    .max(32, "Too many characters")
-    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
-    .required("City is required"),
-  zip: yup
-    .string("Enter your zip code")
-    .max(5, "Too many characters")
-    .matches(/^\d+$/, "Only numbers are allowed for this field ")
-    .required("Zip code is required"),
-});
-
-const EditStudentForm = () => {
-  const [name, setName] = useState("");
+const AddStudentForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [dateOfBirth, setDateOfBirth] = useState(null);
   const [geoState, setGeoState] = useState("");
   const formik = useFormik({
-    initialValues: {
-      name: name,
-      city: "",
-      zip: "",
-    },
+    initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(addStudent({ ...values, id: nanoid() }));
+      navigate("/");
     },
   });
-
-  const handleGeoStateChange = (event) => {
-    setGeoState(event.target.value);
-  };
-
-  // const isFormValid = () => {
-  //   const
-  // }
 
   return (
     <Container>
@@ -66,11 +47,12 @@ const EditStudentForm = () => {
           {/* Name */}
           <TextField
             autoFocus
+            required
             fullWidth
             id="name"
             name="name"
             label="Name"
-            // value={formik.values.name}
+            value={formik.values.name}
             onChange={formik.handleChange}
             error={formik.touched.name && Boolean(formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
@@ -78,20 +60,33 @@ const EditStudentForm = () => {
           {/* DOB */}
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              id="dateOfBirth"
-              name="dateOfBirth"
-              label="DOB"
               value={dateOfBirth}
               onChange={(newValue) => {
                 setDateOfBirth(newValue);
               }}
               renderInput={(params) => (
-                <TextField {...params} required value={dateOfBirth} />
+                <TextField
+                  {...params}
+                  required
+                  name="dateOfBirth"
+                  label="DOB"
+                  value={dateOfBirth}
+                  onChange={formik.handleChange}
+                  error={
+                    formik.touched.dateOfBirth &&
+                    Boolean(formik.errors.dateOfBirth)
+                  }
+                  helperText={
+                    formik.touched.dateOfBirth && formik.errors.dateOfBirth
+                  }
+                />
               )}
             />
           </LocalizationProvider>
+
           {/* City */}
           <TextField
+            required
             fullWidth
             id="city"
             name="city"
@@ -109,18 +104,29 @@ const EditStudentForm = () => {
                 placeholder="State"
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={geoState}
+                name="geoState"
+                value={formik.values.geoState}
                 label="State"
-                onChange={handleGeoStateChange}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  setGeoState(e.target.value);
+                }}
+                error={
+                  formik.touched.geoState && Boolean(formik.errors.geoState)
+                }
+                // helperText={formik.touched.geoState}
               >
                 {statesArray.map((state) => (
-                  <MenuItem value={state}>{state}</MenuItem>
+                  <MenuItem key={state} value={state}>
+                    {state}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
           </Box>
           {/* Zip */}
           <TextField
+            required
             fullWidth
             id="zip"
             name="zip"
@@ -140,66 +146,4 @@ const EditStudentForm = () => {
   );
 };
 
-export default EditStudentForm;
-
-const statesArray = [
-  "Alabama",
-  "Alaska",
-  "American Samoa",
-  "Arizona",
-  "Arkansas",
-  "California",
-  "Colorado",
-  "Connecticut",
-  "Delaware",
-  "District of Columbia",
-  "Federated States of Micronesia",
-  "Florida",
-  "Georgia",
-  "Guam",
-  "Hawaii",
-  "Idaho",
-  "Illinois",
-  "Indiana",
-  "Iowa",
-  "Kansas",
-  "Kentucky",
-  "Louisiana",
-  "Maine",
-  "Marshall Islands",
-  "Maryland",
-  "Massachusetts",
-  "Michigan",
-  "Minnesota",
-  "Mississippi",
-  "Missouri",
-  "Montana",
-  "Nebraska",
-  "Nevada",
-  "New Hampshire",
-  "New Jersey",
-  "New Mexico",
-  "New York",
-  "North Carolina",
-  "North Dakota",
-  "Northern Mariana Islands",
-  "Ohio",
-  "Oklahoma",
-  "Oregon",
-  "Palau",
-  "Pennsylvania",
-  "Puerto Rico",
-  "Rhode Island",
-  "South Carolina",
-  "South Dakota",
-  "Tennessee",
-  "Texas",
-  "Utah",
-  "Vermont",
-  "Virgin Island",
-  "Virginia",
-  "Washington",
-  "West Virginia",
-  "Wisconsin",
-  "Wyoming",
-];
+export default AddStudentForm;

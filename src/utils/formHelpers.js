@@ -1,5 +1,13 @@
 import * as yup from "yup";
 
+export const initialValues = {
+  name: "",
+  dateOfBirth: "",
+  city: "",
+  geoState: "",
+  zip: "",
+};
+
 export const validationSchema = yup.object({
   name: yup
     .string("Enter your name")
@@ -13,17 +21,17 @@ export const validationSchema = yup.object({
     .required("City is required"),
   zip: yup
     .string("Enter your zip code")
+    .min(5, "Too few characters")
     .max(5, "Too many characters")
     .matches(/^\d+$/, "Only numbers are allowed for this field ")
     .required("Zip code is required"),
 });
 
-export const initialValues = {
-  name: "",
-  dateOfBirth: "",
-  city: "",
-  geoState: "",
-  zip: "",
+export const isFormValid = (fValues, fErrors) => {
+  return (
+    Object.values(fValues).every((value) => value !== "") &&
+    Object.values(fErrors).every((error) => error === "")
+  );
 };
 
 export const statesArray = [

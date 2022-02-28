@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 //
+import { useSelector, useDispatch } from "react-redux";
+import { selectRoster } from "./rosterSlice";
+//
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,17 +13,20 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 //
-import MuiLink from "../Link/MuiLink";
-import DeleteStudent from "../Modal/DeleteStudent";
+import MuiLink from "../../../components/Link/MuiLink";
+import DeleteStudent from "./DeleteStudent";
 
 const StudentDetails = () => {
-  const [students, setStudents] = useState([]);
-  useEffect(() => {
-    axios
-      .get("./students.json")
-      .then((res) => setStudents(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const roster = useSelector(selectRoster);
+  // const [students, setStudents] = useState([]);
+  // useEffect(async () => {
+  //   const url = "./students.json";
+  //   const data = await axios
+  //     .get(url)
+  //     .then((res) => setStudents(res.data))
+  //     .catch((err) => console.log(err));
+  //   return data;
+  // }, []);
 
   return (
     <TableContainer component={Paper}>
@@ -36,9 +42,9 @@ const StudentDetails = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {students.map((student) => (
+          {[...roster].map((student) => (
             <TableRow
-              key={student.name}
+              key={student.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
@@ -46,13 +52,13 @@ const StudentDetails = () => {
               </TableCell>
               <TableCell align="right">{student.dateOfBirth}</TableCell>
               <TableCell align="right">{student.city}</TableCell>
-              <TableCell align="right">{student.state}</TableCell>
+              <TableCell align="right">{student.geoState}</TableCell>
               <TableCell align="right">{student.zip}</TableCell>
               <TableCell align="right">
                 <MuiLink href="edit-student">
                   <Button variant="text">Edit</Button>
                 </MuiLink>
-                |<DeleteStudent />
+                |<DeleteStudent studentId={student.id} />
               </TableCell>
             </TableRow>
           ))}
