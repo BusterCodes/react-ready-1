@@ -1,15 +1,13 @@
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
-import App from './App';
-import theme from './theme';
+import * as React from "react";
+import ReactDOM from "react-dom";
+
+import { Provider } from "react-redux";
+import App from "./App";
+import store from "./app/store";
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-    <CssBaseline />
+  <Provider store={store}>
     <App />
-  </ThemeProvider>,
-  document.querySelector('#root'),
+  </Provider>,
+  document.querySelector("#root")
 );
