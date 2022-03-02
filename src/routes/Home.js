@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 //
 import Hero from "../components/Hero/Hero";
 import MuiLink from "../components/Link/MuiLink";
-import StudentDetails from "../app/features/roster/GetStudents";
+import StudentDetails from "../components/Student/GetStudents";
 
 const heroContent = {
   title: "The Annual Conference",

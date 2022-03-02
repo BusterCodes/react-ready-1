@@ -27,7 +27,11 @@ const App = () => {
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/add-student" element={<AddStudentPage />} />
-            <Route exact path="/edit-student" element={<EditStudentPage />} />
+            <Route
+              exact
+              path="/edit-student/:id"
+              element={<EditStudentPage />}
+            />
             <Route exact path="/test" element={<TestPage />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>

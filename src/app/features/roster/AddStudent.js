@@ -17,6 +17,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
@@ -61,8 +62,13 @@ const AddStudentForm = () => {
               label="Name"
               value={formik.values.name}
               onChange={formik.handleChange}
-              error={formik.touched.name && Boolean(formik.errors.name)}
-              helperText={formik.touched.name && formik.errors.name}
+              // error={formik.touched.name && Boolean(formik.errors.name)}
+              helperText={
+                <Box sx={{ textAlign: "right" }}>
+                  {formik.errors.name && formik.errors.name}
+                </Box>
+              }
+              // helperText={formik.touched.name && formik.errors.name}
             />
           </Grid>
           {/* DOB */}
@@ -87,7 +93,9 @@ const AddStudentForm = () => {
                       Boolean(formik.errors.dateOfBirth)
                     }
                     helperText={
-                      formik.touched.dateOfBirth && formik.errors.dateOfBirth
+                      <Box sx={{ textAlign: "right" }}>
+                        {formik.errors.dateOfBirth && formik.errors.dateOfBirth}
+                      </Box>
                     }
                   />
                 )}
@@ -104,8 +112,12 @@ const AddStudentForm = () => {
               label="City"
               value={formik.values.city}
               onChange={formik.handleChange}
-              error={formik.touched.city && Boolean(formik.errors.city)}
-              helperText={formik.touched.city && formik.errors.city}
+              // error={formik.touched.city && Boolean(formik.errors.city)}
+              helperText={
+                <Box sx={{ textAlign: "right" }}>
+                  {formik.errors.city && formik.errors.city}
+                </Box>
+              }
             />
           </Grid>
           {/* State */}
@@ -124,10 +136,9 @@ const AddStudentForm = () => {
                     formik.handleChange(e);
                     setGeoState(e.target.value);
                   }}
-                  error={
-                    formik.touched.geoState && Boolean(formik.errors.geoState)
-                  }
-                  // helperText={formik.touched.geoState}
+                  // error={
+                  //   formik.touched.geoState && Boolean(formik.errors.geoState)
+                  // }
                 >
                   {statesArray.map((state) => (
                     <MenuItem key={state} value={state}>
@@ -135,6 +146,11 @@ const AddStudentForm = () => {
                     </MenuItem>
                   ))}
                 </Select>
+                <FormHelperText>
+                  <Box sx={{ textAlign: "right" }}>
+                    {formik.errors.geoState && formik.errors.geoState}
+                  </Box>
+                </FormHelperText>
               </FormControl>
             </Box>
           </Grid>
@@ -148,8 +164,10 @@ const AddStudentForm = () => {
               label="Zip"
               value={formik.values.zip}
               onChange={formik.handleChange}
-              error={formik.touched.zip && Boolean(formik.errors.zip)}
-              helperText={formik.touched.zip && formik.errors.zip}
+              // error={formik.touched.zip && Boolean(formik.errors.zip)}
+              helperText={
+                <Box sx={{ textAlign: "right" }}>{formik.errors.zip}</Box>
+              }
             />
           </Grid>
           <Grid item xs={6}>

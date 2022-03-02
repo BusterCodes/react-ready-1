@@ -19,6 +19,7 @@ import DeleteStudent from "./DeleteStudent";
 const StudentDetails = () => {
   const roster = useSelector(selectRoster);
   // const [students, setStudents] = useState([]);
+
   // useEffect(async () => {
   //   const url = "./students.json";
   //   const data = await axios
@@ -42,7 +43,7 @@ const StudentDetails = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {[...roster].map((student) => (
+          {roster.map((student) => (
             <TableRow
               key={student.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -55,7 +56,7 @@ const StudentDetails = () => {
               <TableCell align="right">{student.geoState}</TableCell>
               <TableCell align="right">{student.zip}</TableCell>
               <TableCell align="right">
-                <MuiLink href="edit-student">
+                <MuiLink href={`edit-student/${student.id}`}>
                   <Button variant="text">Edit</Button>
                 </MuiLink>
                 |<DeleteStudent studentId={student.id} />

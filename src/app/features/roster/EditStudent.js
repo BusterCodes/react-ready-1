@@ -2,15 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 //
 import { useDispatch } from "react-redux";
-import { addStudent } from "./rosterSlice";
+import { updateStudent } from "./rosterSlice";
 //
 import { useFormik } from "formik";
-import {
-  validationSchema,
-  initialValues,
-  statesArray,
-} from "../../../utils/formHelpers";
-import { nanoid } from "nanoid";
+import { validationSchema, statesArray } from "../../../utils/formHelpers";
 //
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -26,19 +21,33 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 
-const AddStudentForm = () => {
+const EditStudentForm = ({ student }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [dateOfBirth, setDateOfBirth] = useState(null);
-  const [geoState, setGeoState] = useState("");
+  //
+  const [name, setName] = useState(student.name);
+  const [dateOfBirth, setDateOfBirth] = useState(student.dateOfBirth);
+  const [city, setCity] = useState(student.city);
+  const [geoState, setGeoState] = useState(student.geoState);
+  const [zip, setZip] = useState(student.zip);
+  //
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: {
+      id: student.id,
+      name,
+      dateOfBirth,
+      city,
+      geoState,
+      zip,
+    },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      dispatch(addStudent({ ...values, id: nanoid() }));
+      dispatch(updateStudent({ ...values }));
       navigate("/");
     },
   });
+
+  console.log(formik.values);
 
   return (
     <Container>
@@ -52,8 +61,11 @@ const AddStudentForm = () => {
             id="name"
             name="name"
             label="Name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
+            value={name}
+            onChange={(e) => {
+              formik.handleChange(e);
+              setName(e.target.value);
+            }}
             error={formik.touched.name && Boolean(formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
           />
@@ -61,8 +73,9 @@ const AddStudentForm = () => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               value={dateOfBirth}
-              onChange={(newValue) => {
-                setDateOfBirth(newValue);
+              onChange={(e) => {
+                formik.handleChange(e);
+                setDateOfBirth(e.target.value);
               }}
               renderInput={(params) => (
                 <TextField
@@ -71,7 +84,10 @@ const AddStudentForm = () => {
                   name="dateOfBirth"
                   label="DOB"
                   value={dateOfBirth}
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    setDateOfBirth(e.target.value);
+                  }}
                   error={
                     formik.touched.dateOfBirth &&
                     Boolean(formik.errors.dateOfBirth)
@@ -91,8 +107,11 @@ const AddStudentForm = () => {
             id="city"
             name="city"
             label="City"
-            value={formik.values.city}
-            onChange={formik.handleChange}
+            value={city}
+            onChange={(e) => {
+              formik.handleChange(e);
+              setCity(e.target.value);
+            }}
             error={formik.touched.city && Boolean(formik.errors.city)}
             helperText={formik.touched.city && formik.errors.city}
           />
@@ -105,7 +124,7 @@ const AddStudentForm = () => {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 name="geoState"
-                value={formik.values.geoState}
+                value={geoState}
                 label="State"
                 onChange={(e) => {
                   formik.handleChange(e);
@@ -131,8 +150,11 @@ const AddStudentForm = () => {
             id="zip"
             name="zip"
             label="Zip"
-            value={formik.values.zip}
-            onChange={formik.handleChange}
+            value={zip}
+            onChange={(e) => {
+              formik.handleChange(e);
+              setZip(e.target.value);
+            }}
             error={formik.touched.zip && Boolean(formik.errors.zip)}
             helperText={formik.touched.zip && formik.errors.zip}
           />
@@ -146,4 +168,4 @@ const AddStudentForm = () => {
   );
 };
 
-export default AddStudentForm;
+export default EditStudentForm;

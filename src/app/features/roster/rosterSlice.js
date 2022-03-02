@@ -26,10 +26,23 @@ export const rosterSlice = createSlice({
       }
       state.students = updatedRoster;
     },
+    updateStudent: (state, action) => {
+      const newRoster = state.students.map((item) => {
+        if (item.id !== action.payload.id) {
+          return item;
+        }
+
+        return {
+          ...item,
+          ...action.payload,
+        };
+      });
+      state.students = newRoster;
+    },
   },
 });
 
-export const { addStudent, removeStudent } = rosterSlice.actions;
+export const { addStudent, removeStudent, updateStudent } = rosterSlice.actions;
 
 export const selectRoster = (state) => state.roster.students;
 

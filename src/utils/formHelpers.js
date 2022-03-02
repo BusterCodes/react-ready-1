@@ -14,16 +14,18 @@ export const validationSchema = yup.object({
     .max(32, "Too many characters")
     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
     .required("Name is required"),
+  // dateOfBirth: yup.string().required("Date of Birth is required"),
   city: yup
     .string("Enter your city")
     .max(32, "Too many characters")
     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
     .required("City is required"),
+  geoState: yup.string().required("State is required"),
   zip: yup
     .string("Enter your zip code")
+    .matches(/^\d+$/, "Only numbers are allowed for this field ")
     .min(5, "Too few characters")
     .max(5, "Too many characters")
-    .matches(/^\d+$/, "Only numbers are allowed for this field ")
     .required("Zip code is required"),
 });
 
