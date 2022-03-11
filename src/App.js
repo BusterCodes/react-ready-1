@@ -6,7 +6,7 @@ import {
   EditStudentPage,
   TestPage,
   NoMatch,
-} from "./routes";
+} from "./pages";
 //
 import Layout from "./components/Layout";
 import { lightTheme, darkTheme } from "./theme";

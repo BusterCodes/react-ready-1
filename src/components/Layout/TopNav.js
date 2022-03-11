@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Avatar from "@mui/material/Avatar";
 import Link from "@mui/material/Link";
+import logo from "../../assets/images/react-icon.png";
 
 const NavLink = ({ href, children }) => {
   return (
@@ -36,7 +37,7 @@ const TopNav = () => {
         <Link href="/" sx={{ mr: "auto" }}>
           <Avatar
             alt="logo"
-            src="./react-icon.png"
+            src={logo}
             sx={{ width: 75, height: 75, m: "5px auto 5px 0" }}
           />
         </Link>

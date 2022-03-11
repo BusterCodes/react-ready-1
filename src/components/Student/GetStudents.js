@@ -44,7 +44,7 @@ const StudentDetails = () => {
           {!!students &&
             students.map((student) => (
               <TableRow
-                key={student.studentID}
+                key={student._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
