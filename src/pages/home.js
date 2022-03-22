@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 //
-import Hero from "../components/Hero/Hero";
+import Hero from "../components/Layout/Hero";
 import MuiLink from "../components/Link/MuiLink";
 import StudentDetails from "../components/Student/GetStudents";
 

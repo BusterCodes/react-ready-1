@@ -20,12 +20,13 @@ const AddStudentPage = () => {
         axios
           .post("http://localhost:4000/students/create-student", values)
           .then((res) => {
-            if (res.status === 200) alert("Student successfully created");
-            else Promise.reject();
+            if (res.status === 200) {
+              alert("Student successfully created");
+              navigate("/");
+            } else Promise.reject();
           })
           .catch((err) => alert("Something went wrong"));
 
-        navigate("/");
         setSubmitting(false);
       }, 1000);
     },

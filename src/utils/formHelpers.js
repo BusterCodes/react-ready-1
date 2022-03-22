@@ -14,7 +14,7 @@ export const studentValidationSchema = yup.object({
     .max(32, "Too many characters")
     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
     .required("Name is required"),
-  dateOfBirth: yup.string().required("Date of Birth is required"),
+  dateOfBirth: yup.date().nullable().required("Date of Birth is required"),
   geoCity: yup
     .string("Enter your city")
     .max(32, "Too many characters")

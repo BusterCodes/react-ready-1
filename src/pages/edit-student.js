@@ -31,7 +31,7 @@ const EditStudentPage = () => {
 
     handleSubmit: (values, { setSubmitting }) => {
       setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
+        // alert(JSON.stringify(values, null, 2));
         axios
           .put(
             "http://localhost:4000/students/update-student/" + student._id,
@@ -41,7 +41,6 @@ const EditStudentPage = () => {
             if (res.status === 200) {
               alert("Student successfully updated");
               navigate("/");
-              //   props.history.push("/student-list");
             } else Promise.reject();
           })
           .catch((err) => alert("Something went wrong"));
