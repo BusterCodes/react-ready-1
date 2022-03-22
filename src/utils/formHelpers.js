@@ -8,20 +8,20 @@ export const initialValues = {
   zip: "",
 };
 
-export const validationSchema = yup.object({
+export const studentValidationSchema = yup.object({
   name: yup
     .string("Enter your name")
     .max(32, "Too many characters")
     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
     .required("Name is required"),
-  // dateOfBirth: yup.string().required("Date of Birth is required"),
-  city: yup
+  dateOfBirth: yup.date().nullable().required("Date of Birth is required"),
+  geoCity: yup
     .string("Enter your city")
     .max(32, "Too many characters")
     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
     .required("City is required"),
   geoState: yup.string().required("State is required"),
-  zip: yup
+  geoZip: yup
     .string("Enter your zip code")
     .matches(/^\d+$/, "Only numbers are allowed for this field ")
     .min(5, "Too few characters")
@@ -31,6 +31,7 @@ export const validationSchema = yup.object({
 
 export const isFormValid = (fValues, fErrors) => {
   return (
+    Object.values(fValues).length !== 0 &&
     Object.values(fValues).every((value) => value !== "") &&
     Object.values(fErrors).every((error) => error === "")
   );

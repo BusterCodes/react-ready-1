@@ -25,6 +25,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "latest",
+    "react-social-icons": "^5.11.0",
     "yup": "^0.32.11"
   },
   "browserslist": {
@@ -39,5 +40,10 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "http://localhost:4000",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "jest": "^27.5.1"
+  }
 }

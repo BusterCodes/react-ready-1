@@ -5,13 +5,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
 import { styled } from "@mui/material/styles";
+//
+import { SocialIcon } from "react-social-icons";
 
 const cards = [
-  { title: "Address", content: ["Level 5", "245 Quigley Blvd", "Azuire"] },
-  { title: "Phone", content: ["+1-555-555-5555", "+1-555-555-5555"] },
+  { title: "ADDRESS", content: ["Level 5", "245 Quigley Blvd", "Azuire"] },
+  { title: "PHONE", content: ["+1-555-555-5555", "+1-555-555-5555"] },
   {
-    title: "Email",
+    title: "EMAIL",
     content: ["email1@email.com", "email2@email.com", "email3@email.com"],
   },
 ];
@@ -24,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function Album() {
+export default function About() {
   return (
     <Box sx={{ backgroundColor: "navy", color: "white", height: "90vh" }}>
       <Box
@@ -35,7 +38,7 @@ export default function Album() {
       >
         <Container maxWidth="md">
           <Typography component="h1" variant="h2" align="center" gutterBottom>
-            About Us
+            ABOUT US
           </Typography>
           <Typography variant="h5" align="center" paragraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -48,13 +51,14 @@ export default function Album() {
       <Container sx={{ textAlign: "center" }}>
         <Grid container spacing={4}>
           {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={4} md={4}>
-              <Box>
-                <Typography>{card.title}</Typography>
-                {card.content.map((line) => (
-                  <Typography>{line}</Typography>
-                ))}
-              </Box>
+            <Grid item key={card.title} xs={12} sm={4} md={4}>
+              <Divider variant="middle" color="error" sx={{ mb: 2 }} />
+              <Typography color="error" variant="h6">
+                {card.title}
+              </Typography>
+              {card.content.map((line, i) => (
+                <Typography key={i}>{line}</Typography>
+              ))}
             </Grid>
           ))}
         </Grid>
@@ -71,11 +75,16 @@ export default function Album() {
         justifyContent="center"
         alignItems="center"
       >
-        <Item>Item 1</Item>
+        <SocialIcon network="twitter" />
+        <SocialIcon network="email" />
+        <SocialIcon network="facebook" />
+        <SocialIcon network="github" />
+        <SocialIcon network="linkedin" />
+        {/* <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item>
         <Item>Item 4</Item>
-        <Item>Item 5</Item>
+        <Item>Item 5</Item> */}
       </Stack>
     </Box>
   );
