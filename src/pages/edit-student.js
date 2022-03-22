@@ -3,10 +3,10 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 //
 import { withFormik } from "formik";
+import { studentValidationSchema } from "../utils/formHelpers";
+import StudentForm from "../components/Student/StudentForm";
 //
 import Typography from "@mui/material/Typography";
-//
-import StudentForm from "../components/Student/StudentForm";
 
 const EditStudentPage = () => {
   const [student, setStudent] = useState({});
@@ -26,17 +26,8 @@ const EditStudentPage = () => {
   // Enhance Student Form for Edit/Post to API
   const EditStudentForm = withFormik({
     mapPropsToValues: () => ({ ...student }),
-
-    // Custom sync validation
-    validate: (values) => {
-      const errors = {};
-
-      if (!values.name) {
-        errors.name = "Required";
-      }
-
-      return errors;
-    },
+    mapPropsToTouched: () => ({ ...student }),
+    validationSchema: studentValidationSchema,
 
     handleSubmit: (values, { setSubmitting }) => {
       setTimeout(() => {
@@ -58,7 +49,7 @@ const EditStudentPage = () => {
       }, 1000);
     },
 
-    displayName: "BasicForm",
+    displayName: "EditStudentForm",
   })(StudentForm);
 
   return (

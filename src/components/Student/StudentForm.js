@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-// import { statesArray } from "../../utils/formHelpers";
+import { statesArray, isFormValid } from "../../utils/formHelpers";
 
 const StudentForm = (props) => {
   const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
@@ -19,21 +19,24 @@ const StudentForm = (props) => {
             label="Name"
             value={values.name}
             onChange={handleChange}
+            onBlur={handleBlur}
             error={touched.name && Boolean(errors.name)}
             helperText={touched.name && errors.name}
+            // helperText={`This is helper text`}
           />
         </Grid>
 
         {/* DOB */}
         <Grid item xs={12} sx={{ mb: 2 }}>
           <TextField
-            required
+            // required
             fullWidth
             id="dateOfBirth"
             name="dateOfBirth"
             label="DOB"
             value={values.dateOfBirth}
             onChange={handleChange}
+            onBlur={handleBlur}
             error={touched.dateOfBirth && Boolean(errors.dateOfBirth)}
             helperText={touched.dateOfBirth && errors.dateOfBirth}
           />
@@ -42,13 +45,14 @@ const StudentForm = (props) => {
         {/* CITY */}
         <Grid item xs={12} sx={{ mb: 2 }}>
           <TextField
-            required
+            // required
             fullWidth
             id="geoCity"
             name="geoCity"
             label="City"
             value={values.geoCity}
             onChange={handleChange}
+            onBlur={handleBlur}
             error={touched.geoCity && Boolean(errors.geoCity)}
             helperText={touched.geoCity && errors.geoCity}
           />
@@ -57,13 +61,14 @@ const StudentForm = (props) => {
         {/* STATE */}
         <Grid item xs={12} sx={{ mb: 2 }}>
           <TextField
-            required
+            // required
             fullWidth
             id="geoState"
             name="geoState"
             label="State"
             value={values.geoState}
             onChange={handleChange}
+            onBlur={handleBlur}
             error={touched.geoState && Boolean(errors.geoState)}
             helperText={touched.geoState && errors.geoState}
           />
@@ -72,19 +77,26 @@ const StudentForm = (props) => {
         {/* ZIP */}
         <Grid item xs={12} sx={{ mb: 2 }}>
           <TextField
-            required
+            // required
             fullWidth
             id="geoZip"
             name="geoZip"
             label="Zip"
             value={values.geoZip}
             onChange={handleChange}
+            onBlur={handleBlur}
             error={touched.geoZip && Boolean(errors.geoZip)}
             helperText={touched.geoZip && errors.geoZip}
           />
         </Grid>
 
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button
+          color="primary"
+          variant="contained"
+          fullWidth
+          type="submit"
+          disabled={!isFormValid(values, errors)}
+        >
           Submit
         </Button>
       </Grid>
